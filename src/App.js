@@ -1,22 +1,24 @@
-
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { CollectionCard, ImageCard, SearchAppBar } from "./components";
+import { useSearchBar } from "./components/SearchBar";
 
 function App() {
+
+  const [address, setAddress] = useState(null);
+
+  const [searchBar, value] = useSearchBar("Search an address...", () => {setAddress(value)});
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchAppBar>
+        {searchBar}
+      </SearchAppBar>
+      <div>
+        <CollectionCard address={address} />
+      </div>
     </div>
   );
 }
