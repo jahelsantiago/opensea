@@ -19,11 +19,13 @@ export default function CollectionCard({ address }) {
   const [SearchBar, searchID] = useSearchBar("Search an ID...", onSubmit)
   const [imageID, setImageID] = React.useState(null)
 
-  if(!data){
+  if(!data || error){
     return <Typography variant='h2' align='center' color = "primary">
         Please write an Address
     </Typography>
   }
+
+
   
   function onSubmit(){
     setImageID(searchID)

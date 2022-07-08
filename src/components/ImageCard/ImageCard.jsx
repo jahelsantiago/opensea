@@ -4,24 +4,26 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { CardActionArea } from '@mui/material';
+import { Button, CardActionArea } from '@mui/material';
 import useQuery from '../../services/useQuery';
+import { StatsModal } from '../StatsModal';
 
 export default function ImageCard({ address, id }) {
 
     const { data, error, loading } = useQuery("https://api.opensea.io/api/v1/asset/" + address + "/" + id + "/");
-    
-    if(!data){
-        return <Typography variant='h4' align='center' color = "white">
+    const [open, setOpen] = React.useState(false);
+
+    if (!data) {
+        return <Typography variant='h4' align='center' color="white">
             Please write an ID
         </Typography>
     }
 
 
-
-
     return (
-        <Card sx={{ maxWidth: "410px", margin: "auto" }}>
+        <>
+        <StatsModal open={open} setOpen={setOpen} stats = {data.collection.stats}/>
+        <Card sx={{ maxWidth: "410px", margin: "auto" }} onClick = {()=>setOpen(true)}>
             <CardActionArea>
                 <CardMedia
                     component="img"
@@ -46,11 +48,19 @@ export default function ImageCard({ address, id }) {
                     <Typography variant="body1" color="text.secondary" textAlign={"justify"}>
                         {data.asset_contract.description}
                     </Typography>
+                    <Typography variant="body1" color="text.secondary" textAlign={"left"} fontWeight="900">
+                        Payment tokens:
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" textAlign={"left"}>
+                        {data.collection.payment_tokens
+                            .map(token => token.name)}
+                    </Typography>
                     <Typography variant="body1" color="text.secondary" textAlign={"right"}>
                         {new Date(data.asset_contract.created_date).toLocaleDateString()}
                     </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
+        </>
     );
 }

@@ -15,15 +15,16 @@ export default function useQuery(query) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const response = await fetch(query);
-      const json = await response.json();
-      console.log(json);
+      setError(false);
+      setData(null);
 
-      if(response.ok) {
+      const response = await fetch(query);
+
+      const json = await response.json();
+
+      if(response.status === 200) {
         setData(json);
         setError(false);
-      }else{
-        setError(true);
       }
 
       setLoading(false);
