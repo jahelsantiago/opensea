@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import { CollectionCard, ImageCard, SearchAppBar } from "./components";
+import { CollectionCard, SearchAppBar } from "./components";
 import { useSearchBar } from "./components/SearchBar";
+import Wallet from "./components/Wallet/Wallet";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       </SearchAppBar>
       <div>
         <CollectionCard address={address} />
+        <Wallet/>
       </div>
     </div>
   );
