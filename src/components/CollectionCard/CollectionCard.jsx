@@ -1,5 +1,5 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { styled, alpha } from '@mui/material/styles';
+import { Grid, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react'
 import {  useQuery } from '../../services'
 import { ImageCard } from '../ImageCard';
@@ -18,7 +18,7 @@ const Image = styled('img')(({ theme }) => ({
 
 
 export default function CollectionCard({ address }) {
-  const { data, error, loading } = useQuery(`https://api.opensea.io/api/v1/asset_contract/${address}/`)
+  const { data, error } = useQuery(`https://api.opensea.io/api/v1/asset_contract/${address}/`)
   const [SearchBar, searchID] = useSearchBar("Search an ID...", onSubmit)
   const [imageID, setImageID] = React.useState(null)
 

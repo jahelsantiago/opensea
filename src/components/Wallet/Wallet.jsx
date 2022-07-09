@@ -1,7 +1,7 @@
 // Importing modules
 import React, { useState } from "react";
 import { ethers } from "ethers";
-import { Button, Card, Divider, Grid, Paper } from "@mui/material";
+import { Button, Divider, Grid, Paper } from "@mui/material";
 
 export default function Wallet() {
   // usetstate for storing and retrieving wallet details

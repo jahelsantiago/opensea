@@ -4,13 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { Button, CardActionArea } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import useQuery from '../../services/useQuery';
 import { StatsModal } from '../StatsModal';
 
 export default function ImageCard({ address, id }) {
 
-    const { data, error, loading } = useQuery("https://api.opensea.io/api/v1/asset/" + address + "/" + id + "/");
+    const { data } = useQuery("https://api.opensea.io/api/v1/asset/" + address + "/" + id + "/");
     const [open, setOpen] = React.useState(false);
 
     if (!data) {
